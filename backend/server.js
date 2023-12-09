@@ -18,7 +18,7 @@ app.get('/', async (req, res) => {
           'https://api.openai.com/v1/completions',
           {
             model: 'gpt-3.5-turbo-instruct',
-            prompt: 'Write a one liner about life',
+            prompt: 'Write a two liner about life',
             max_tokens: 50,
           },
           {
