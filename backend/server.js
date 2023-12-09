@@ -1,10 +1,14 @@
 const express = require('express'); //Importing the Express module
 const axios = require('axios'); //Importing the Axios module
+const dotenv = require('dotenv'); //Importing the dotenv package
 
 const app = express(); //Creating an instance of the Express module
 const port = 3000; //Setting the port number to 3000
 
-const openaiApiKey = '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';
+// Load environment variables from the .env file
+dotenv.config();
+// Access the OPENAI_API_KEY variable from process.env
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 //Defining a route for the root path ("/")
 app.get('/', async (req, res) => {
@@ -20,7 +24,7 @@ app.get('/', async (req, res) => {
           {
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${openaiApiKey}`,
+              'Authorization': `Bearer ${OPENAI_API_KEY}`,
             },
           }            
     );
