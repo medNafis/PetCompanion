@@ -10,6 +10,21 @@ dotenv.config();
 // Access the OPENAI_API_KEY variable from process.env
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
+const samplePetProfile = {
+  name: "Buddy",
+  breed: "Golden Retriever",
+  age: 3,
+  healthConditions: ["sensitive stomach"],
+  behaviorTraits: ["energetic", "friendly"]
+};
+
+const formulatePrompt = (petProfile) => {
+  return `Provide a diet plan for a ${petProfile.age}-year-old ${petProfile.behaviorTraits.join(", ")} ${petProfile.breed} named ${petProfile.name} with ${petProfile.healthConditions.join(" and ")}.`;
+};
+
+const prompt = formulatePrompt(samplePetProfile);
+
+
 //Defining a route for the root path ("/")
 app.get('/', async (req, res) => {
     try {
@@ -18,8 +33,8 @@ app.get('/', async (req, res) => {
           'https://api.openai.com/v1/completions',
           {
             model: 'gpt-3.5-turbo-instruct',
-            prompt: 'Write a two liner about life',
-            max_tokens: 50,
+            prompt: prompt,
+            max_tokens: 100,
           },
           {
             headers: {
