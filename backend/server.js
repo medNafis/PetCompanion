@@ -1,6 +1,15 @@
 const express = require('express'); //Importing the Express module
 const axios = require('axios'); //Importing the Axios module
 const dotenv = require('dotenv'); //Importing the dotenv package
+const mongoose = require('mongoose');
+
+//Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/petCare', { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true 
+})
+.then(() => console.log('Connected to MongoDB'))
+.catch(err => console.error('Could not connect to MongoDB...', err));
 
 const app = express(); //Creating an instance of the Express module
 const port = 3000; //Setting the port number to 3000
